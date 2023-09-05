@@ -28,7 +28,7 @@ const CommentCard = ({articleId}) => {
         <p>{comment.body}</p>
         <p>by {comment.author}</p>
         <p>{new Date(comment.created_at).toUTCString()}</p>
-        <p>💘 {comment.votes} </p>
+        <p>💘 {comment.votes} ⬇ </p>
       </li>
     );
   });

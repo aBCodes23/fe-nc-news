@@ -45,8 +45,9 @@ header {
 
 /* article image */
 .ArticleImage{
-  width: 300px;
-  height: 300px;
+  width: 100%;
+  max-height: auto;
+
 }
 
 /* comment parent */
@@ -60,7 +61,7 @@ header {
 
 /* comment */
 .Comment{
-  width:40rem;
+  max-width:40rem;
   border-style: solid;
   list-style: none;
   padding: 0.5rem;
