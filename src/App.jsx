@@ -7,10 +7,11 @@ import Articles from "./4.Articles";
 import Users from "./5.Users";
 import Article from "./6.Article";
 
+
 function App() {
 
   return (
-    <>
+    <div>
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -20,7 +21,7 @@ function App() {
         <Route path="/users" element={<Users />} />
         <Route path={`/articles/:articleId`} element={<Article />} />
       </Routes>
-    </>
+    </div>
   );
 }
 
