@@ -16,4 +16,12 @@ const getArticleByID = ({articleId}) => {
   });
 }
 
-export {getArticles, getArticleByID}
+const getCommentsByID = ({articleId}) => {
+  return axios
+  .get(`https://abcodesnorthcodersncnewsapp.onrender.com/api/articles/${articleId}/comments`)
+  .then(( {data} ) => {
+  return data.comments
+  });
+}
+
+export {getArticles, getArticleByID, getCommentsByID}

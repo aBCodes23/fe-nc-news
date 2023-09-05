@@ -43,7 +43,26 @@ header {
   margin: 50px;
 }
 
+/* article image */
 .ArticleImage{
   width: 300px;
   height: 300px;
+}
+
+/* comment parent */
+.CommentParent{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  margin: 1rem
+}
+
+/* comment */
+.Comment{
+  width:40rem;
+  border-style: solid;
+  list-style: none;
+  padding: 0.5rem;
+  margin: 0.5rem;
 }
