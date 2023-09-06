@@ -23,7 +23,7 @@ const NewComment = ({ articleId }) => {
       })
       .catch((err) => {
         setErr("Something went wrong, please try again");
-        articleComment()
+        setArticleComment()
         console.log(err);
       });
   };
