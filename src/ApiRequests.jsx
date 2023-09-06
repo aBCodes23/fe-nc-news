@@ -24,17 +24,22 @@ const getCommentsByID = ({articleId}) => {
   });
 }
 
-const getArticleVotes = ({articleId}) => {
+const patchArticleVote = ({articleId}, vote) => {
   return axios
-  .get(`https://abcodesnorthcodersncnewsapp.onrender.com/api/articles/${articleId}`)
+  .post(`https://abcodesnorthcodersncnewsapp.onrender.com/api/articles/${articleId}`,{inc_vote: vote})
+}
+
+const getUsers = () => {
+  return axios
+  .get(`https://abcodesnorthcodersncnewsapp.onrender.com/api/users`)
   .then(( {data} ) => {
-  return data.article.votes
+  return data.users
   });
 }
 
-const patchArticleVote = ({articleId}, vote) => {
+const postComment = ({articleId}, newComment, user) => {
   return axios
-  .patch(`https://abcodesnorthcodersncnewsapp.onrender.com/api/articles/${articleId}`,{inc_vote: vote})
+  .post(`https://abcodesnorthcodersncnewsapp.onrender.com/api/articles/${articleId}/comments/FART`,{body: newComment, username:user})
 }
 
-export {getArticles, getArticleByID, getCommentsByID, getArticleVotes, patchArticleVote}
+export {getArticles, getArticleByID, getCommentsByID, patchArticleVote, getUsers, postComment}

@@ -37,33 +37,57 @@ header {
 }
 
 /* article */
-.Article{
+.Article {
   border-style: solid;
   padding: 20px;
   margin: 50px;
 }
 
 /* article image */
-.ArticleImage{
-  width: 100%;
+.ArticleImage {
+  width: 50%;
   max-height: auto;
-
 }
 
 /* comment parent */
-.CommentParent{
+.CommentParent {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 1rem;
-  margin: 1rem
+  margin: 1rem;
 }
 
 /* comment */
-.Comment{
-  max-width:40rem;
+.Comment {
+  max-width: 40rem;
   border-style: solid;
   list-style: none;
+  padding: 0.5rem;
+  margin: 0.5rem;
+}
+
+.userGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+.div1 {grid-area: 1 / 1 / 2 / 2;}
+.div2 {grid-area: 1 / 2 / 2 / 3;}
+.div3 {grid-area: 2 / 1 / 3 / 2;}
+.div4 {grid-area: 2 / 2 / 3 / 3;}
+.div5 {grid-area: 3 / 1 / 4 / 2;}
+.div6 {grid-area: 3 / 2 / 4 / 3;}
+
+.userImage {
+  width: 200px;
+  height: 200px;
+}
+
+.user {
+  font-size: 0.7rem;
+  list-style: none;
+  justify-self: center;
   padding: 0.5rem;
   margin: 0.5rem;
 }
