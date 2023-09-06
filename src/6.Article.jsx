@@ -1,4 +1,7 @@
-import { getArticleByID, getArticleVotes, patchArticleVote } from "./apis";
+import {
+  getArticleByID,
+  patchArticleVote,
+} from "./ApiRequests";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CommentCard from "./6a.CommentCard";
@@ -15,7 +18,7 @@ const Article = () => {
     getArticleByID(articleId)
       .then((article) => {
         setArticle(article);
-        setArticleVote(article.votes)
+        setArticleVote(article.votes);
         setIsLoading(false);
       })
       .catch((err) => {
@@ -24,20 +27,11 @@ const Article = () => {
       });
   }, []);
 
-  const handleAddVote = () => {
-    setArticleVote((currentCount) => currentCount + 1);
+  const handleVote = (vote) => {
+    setArticleVote((currentCount) => currentCount + vote);
     setErr(null);
-    patchArticleVote(articleId, 1).catch((err) => {
-      setArticleVote((currentCount) => currentCount - 1);
-      setErr("Something went wrong, please try again.");
-    });
-  };
-
-  const handleSubVote = () => {
-    setArticleVote((currentCount) => currentCount - 1);
-    setErr(null);
-    patchArticleVote(articleId, -1).catch((err) => {
-      setArticleVote((currentCount) => currentCount + 1);
+    patchArticleVote(articleId, vote).catch((err) => {
+      setArticleVote((currentCount) => currentCount - vote);
       setErr("Something went wrong, please try again.");
     });
   };
@@ -62,7 +56,7 @@ const Article = () => {
         {err ? <p>{err}</p> : null}
         <button
           onClick={() => {
-            handleAddVote()
+            handleVote(1);
           }}
         >
           ⬆
@@ -70,16 +64,16 @@ const Article = () => {
         <p>Votes: {articleVote}</p>
         <button
           onClick={() => {
-            handleSubVote();
+            handleVote(-1);
           }}
         >
           ⬇
         </button>
       </article>
-      <ul className="CommentParent">
+      <div className="CommentParent">
         <h2>Comments: </h2>
         <CommentCard articleId={articleId} />
-      </ul>
+      </div>
     </div>
   );
 };
