@@ -1,20 +1,15 @@
 import axios from "axios";
 
-const getArticles = () => {
+const getArticles = (sortBy, orderBy, topic) => {
   return axios
-    .get("https://abcodesnorthcodersncnewsapp.onrender.com/api/articles")
+    .get("https://abcodesnorthcodersncnewsapp.onrender.com/api/articles", {
+      params: { sort_by: sortBy, order: orderBy, topic: topic },
+    })
     .then(({ data }) => {
       return data.articles;
-    });
-};
-
-const getArticlesByTopic = (topic) => {
-  return axios
-    .get(
-      `https://abcodesnorthcodersncnewsapp.onrender.com/api/articles?topic=${topic}`
-    )
-    .then(({ data }) => {
-      return data.articles;
+    })
+    .catch((err) => {
+      console.log(err);
     });
 };
 
@@ -74,7 +69,6 @@ const getTopics = () => {
 
 export {
   getArticles,
-  getArticlesByTopic,
   getArticleByID,
   getCommentsByID,
   patchArticleVote,

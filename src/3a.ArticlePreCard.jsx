@@ -14,6 +14,9 @@ const ArticlePreCard = ({ articles }) => {
         </Link>
         <p>by {article.author}</p>
         <p>topic: {article.topic}</p>
+        <p>date: {new Date(article.created_at).toUTCString()}</p>
+        <p>number of comments: {article.comment_count}</p>
+        <p>votes: {article.votes}</p>
       </li>
     );
   });
