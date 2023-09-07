@@ -2,24 +2,21 @@ import "./css/App.css";
 import { Route, Routes } from "react-router-dom";
 import Header from "./1.Header";
 import Home from "./2.Home";
-import Topics from "./3.Topics";
-import Articles from "./4.Articles";
+import Articles from "./3.Articles";
+import ArticlesByTopic from "./4.ArticlesByTopic";
 import Users from "./5.Users";
 import Article from "./6.Article";
 
-
 function App() {
-
   return (
     <div>
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/topics" element={<Topics />} />
-        <Route path="/articles"
-               element={<Articles />}/>
+        <Route path="/articles" element={<Articles />} />
+        <Route path="/articles/:topic" element={<ArticlesByTopic />} />
         <Route path="/users" element={<Users />} />
-        <Route path={`/articles/:articleId`} element={<Article />} />
+        <Route path="/article/:articleId" element={<Article />} />
       </Routes>
     </div>
   );

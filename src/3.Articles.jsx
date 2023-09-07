@@ -1,12 +1,13 @@
 import { getArticles } from "./ApiRequests";
 import { useState, useEffect } from "react";
-import ArticlePreCard from "./4a.ArticlePreCard";
+import ArticlePreCard from "./3a.ArticlePreCard";
 
 const Articles = () => {
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
-    getArticles().then((articles) => {
+    getArticles()
+    .then((articles) => {
       setArticles(articles);
     });
   }, []);

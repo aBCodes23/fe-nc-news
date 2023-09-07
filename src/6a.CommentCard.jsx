@@ -25,7 +25,7 @@ const CommentCard = ({ articleId }) => {
 
   return (
     <div>
-      <NewComment articleId={articleId} />
+      <NewComment articleId={articleId} setComments={setComments}/>
       {comments.map((comment) => {
         return (
           <li className="Comment" key={comment.comment_id}>
