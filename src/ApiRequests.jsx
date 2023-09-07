@@ -67,6 +67,12 @@ const getTopics = () => {
     });
 };
 
+const deleteComment = (commentId) => {
+  console.log(commentId)
+return axios
+.delete(`https://abcodesnorthcodersncnewsapp.onrender.com/api/comments/${commentId}`)
+.catch((err)=>{console.log(err)})}
+
 export {
   getArticles,
   getArticleByID,
@@ -75,4 +81,5 @@ export {
   getUsers,
   postComment,
   getTopics,
+  deleteComment
 };
