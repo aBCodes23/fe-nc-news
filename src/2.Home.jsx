@@ -1,5 +1,5 @@
 const Home = () => {
-return <h1>Welcome to NC-News</h1>
+return <h2 className="Home">Welcome to ASCB-News</h2>
 }
 
 export default Home

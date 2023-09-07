@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 import CommentCard from "./6a.CommentCard";
 
 const Article = () => {
-  let articleId = useParams();
+  const articleId = useParams();
   const [article, setArticle] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
@@ -31,6 +31,7 @@ const Article = () => {
     setArticleVote((currentCount) => currentCount + vote);
     setErr(null);
     patchArticleVote(articleId, vote).catch((err) => {
+      console.log(err)
       setArticleVote((currentCount) => currentCount - vote);
       setErr("Something went wrong, please try again.");
     });

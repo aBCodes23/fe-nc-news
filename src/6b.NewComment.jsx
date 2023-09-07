@@ -3,10 +3,9 @@ import { useState } from "react";
 import { useContext } from "react";
 import { UserContext } from "./Context/userContext";
 
-const NewComment = ({ articleId }) => {
+const NewComment = ({ articleId, setComments }) => {
   const { user } = useContext(UserContext);
   const [newComment, setNewComment] = useState("");
-  const [articleComment, setArticleComment] = useState();
   const [err, setErr] = useState(null);
 
   const handleInput = (event) => {
@@ -15,7 +14,9 @@ const NewComment = ({ articleId }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setArticleComment(newComment)
+    setComments((currComments)=>{
+      return [{comment_id: Date.now(), body: newComment, article_id:articleId, author:user,votes:0, created_at:new Date(Date.now()).toUTCString()}, ...currComments]
+    })
     setErr(null);
     postComment(articleId, newComment, user)
       .then(() => {
@@ -23,13 +24,12 @@ const NewComment = ({ articleId }) => {
       })
       .catch((err) => {
         setErr("Something went wrong, please try again");
-        setArticleComment()
+        setComments(comments)
         console.log(err);
       });
   };
 
   return (
-    <div>
       <form onSubmit={handleSubmit}>
         {err ? <p>{err}</p> : null}
         <label htmlFor="body">New Comment:</label>
@@ -41,15 +41,6 @@ const NewComment = ({ articleId }) => {
         />
         <button type="submit">Post</button>
       </form>
-      {articleComment ? (
-        <li className="Comment">
-          <p>{articleComment}</p>
-          <p>by {user}</p>
-          <p>{new Date(Date.now()).toUTCString()}</p>
-          <p>💘 0 ⬇ </p>
-        </li>
-      ) : null}
-    </div>
   );
 };
 
