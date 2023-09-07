@@ -14,9 +14,19 @@ const NewComment = ({ articleId, setComments }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setComments((currComments)=>{
-      return [{comment_id: Date.now(), body: newComment, article_id:articleId, author:user,votes:0, created_at:new Date(Date.now()).toUTCString()}, ...currComments]
-    })
+    setComments((currComments) => {
+      return [
+        {
+          comment_id: Date.now(),
+          body: newComment,
+          article_id: articleId,
+          author: user,
+          votes: 0,
+          created_at: new Date(Date.now()).toUTCString(),
+        },
+        ...currComments,
+      ];
+    });
     setErr(null);
     postComment(articleId, newComment, user)
       .then(() => {
@@ -24,23 +34,23 @@ const NewComment = ({ articleId, setComments }) => {
       })
       .catch((err) => {
         setErr("Something went wrong, please try again");
-        setComments(comments)
+        setComments(comments);
         console.log(err);
       });
   };
 
   return (
-      <form onSubmit={handleSubmit}>
-        {err ? <p>{err}</p> : null}
-        <label htmlFor="body">New Comment:</label>
-        <input
-          value={newComment}
-          type="text"
-          name="body"
-          onChange={handleInput}
-        />
-        <button type="submit">Post</button>
-      </form>
+    <form onSubmit={handleSubmit}>
+      {err ? <p>{err}</p> : null}
+      <label htmlFor="body">New Comment:</label>
+      <input
+        value={newComment}
+        type="text"
+        name="body"
+        onChange={handleInput}
+      />
+      <button type="submit">Post</button>
+    </form>
   );
 };
 
