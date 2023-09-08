@@ -6,6 +6,7 @@ import Articles from "./3.Articles";
 import ArticlesByTopic from "./4.ArticlesByTopic";
 import Users from "./5.Users";
 import Article from "./6.Article";
+import ErrorPage from "./8.ErrorPage";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/articles/:topic" element={<ArticlesByTopic />} />
         <Route path="/users" element={<Users />} />
         <Route path="/article/:articleId" element={<Article />} />
+        <Route path="*" element={<ErrorPage/>} />
       </Routes>
     </div>
   );

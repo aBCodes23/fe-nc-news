@@ -2,6 +2,7 @@ import { postComment } from "./ApiRequests";
 import { useState } from "react";
 import { useContext } from "react";
 import { UserContext } from "./Context/userContext";
+import { getCommentsByID } from "./ApiRequests";
 
 const NewComment = ({ articleId, setComments }) => {
   const { user } = useContext(UserContext);
@@ -30,6 +31,7 @@ const NewComment = ({ articleId, setComments }) => {
     setErr(null);
     postComment(articleId, newComment, user)
       .then(() => {
+        getCommentsByID(articleId).then((comments)=>{setComments(comments)})
         setNewComment("");
       })
       .catch((err) => {
@@ -47,7 +49,7 @@ const NewComment = ({ articleId, setComments }) => {
         value={newComment}
         type="text"
         name="body"
-        onChange={handleInput}
+        onChange={handleInput} required
       />
       <button type="submit">Post</button>
     </form>

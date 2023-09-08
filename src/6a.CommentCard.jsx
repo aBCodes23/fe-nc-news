@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { getCommentsByID, deleteComment } from "./ApiRequests";
 import NewComment from "./6b.NewComment";
+import { useContext } from "react";
+import { UserContext } from "./Context/userContext";
 
 const CommentCard = ({ articleId }) => {
+  const { user } = useContext(UserContext);
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
@@ -20,12 +23,18 @@ const CommentCard = ({ articleId }) => {
       });
   }, []);
 
-  const handleDelete = (comment_id) => {
+  const handleDelete = (comment_id, author) => {
+    if (user != author) {
+      const popup = document.getElementById(`popup${comment_id}`);
+      popup.classList.toggle("show");
+      setTimeout(()=>{popup.classList.toggle("hide")}, 3000);
+      return;
+    }
     setComments((currComments) => {
-      const commentsWithoutDelete = currComments.filter((comment)=>{
-        return comment.comment_id != comment_id
-      })
-      return commentsWithoutDelete
+      const commentsWithoutDelete = currComments.filter((comment) => {
+        return comment.comment_id != comment_id;
+      });
+      return commentsWithoutDelete;
     });
     setErr(null);
     deleteComment(comment_id).catch((err) => {
@@ -50,11 +59,15 @@ const CommentCard = ({ articleId }) => {
             <p>{new Date(comment.created_at).toUTCString()}</p>
             <p>💘 {comment.votes} ⬇ </p>
             <button
+              className="popup"
               onClick={() => {
-                handleDelete(comment.comment_id);
+                handleDelete(comment.comment_id, comment.author);
               }}
             >
               Delete Comment
+              <span className="popuptext" id={`popup${comment.comment_id}`}>
+                You are not the author of this comment
+              </span>
             </button>
             {err ? <p>{err}</p> : null}
           </li>

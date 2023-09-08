@@ -39,7 +39,7 @@ const Article = () => {
 
   if (isLoading) return <h1>Loading...</h1>;
 
-  if (isError) return <h1>Error!</h1>;
+  if (isError) return <h1>Error - Article does not exist</h1>;
 
   return (
     <div>
