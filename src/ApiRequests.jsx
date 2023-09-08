@@ -8,9 +8,6 @@ const getArticles = (sortBy, orderBy, topic) => {
     .then(({ data }) => {
       return data.articles;
     })
-    .catch((err) => {
-      console.log(err);
-    });
 };
 
 const getArticleByID = ({ articleId }) => {
@@ -68,7 +65,6 @@ const getTopics = () => {
 };
 
 const deleteComment = (commentId) => {
-  console.log(commentId)
 return axios
 .delete(`https://abcodesnorthcodersncnewsapp.onrender.com/api/comments/${commentId}`)
 .catch((err)=>{console.log(err)})}

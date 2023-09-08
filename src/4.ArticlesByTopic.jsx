@@ -9,12 +9,24 @@ const ArticlesByTopic = () => {
   let [searchParams] = useSearchParams();
   const sortBy = searchParams.get("sort_by");
   const orderBy = searchParams.get("order");
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    getArticles(sortBy, orderBy, topic).then((articles) => {
+    getArticles(sortBy, orderBy, topic)
+    .then((articles) => {
       setArticlesByTopic(articles);
-    });
+      setIsLoading(false);
+    })
+    .catch((err)=>{
+      setIsLoading(false);
+      setIsError(true);
+    })
   }, [topic, searchParams]);
+
+  if (isLoading) return <h1>Loading...</h1>;
+
+  if (isError) return <h1>Error - Topic does not exist</h1>;
 
   return (
     <div>
