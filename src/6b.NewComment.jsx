@@ -44,8 +44,8 @@ const NewComment = ({ articleId, setComments }) => {
   return (
     <form onSubmit={handleSubmit}>
       {err ? <p>{err}</p> : null}
-      <label htmlFor="body">New Comment:</label>
-      <input
+      <label htmlFor="body">New Comment: </label>
+      <textarea
         value={newComment}
         type="text"
         name="body"

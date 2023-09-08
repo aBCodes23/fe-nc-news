@@ -20,7 +20,7 @@ const NavBar = () => {
           <Link to="/articles">Articles</Link>
         </li>
         <li className="dropdown">
-          <button className="dropbtn">Topics</button>
+          <button className="dropbtnTopic">Topics</button>
           <div className="dropdown-content">
             {topics.map((topic) => {
               return (

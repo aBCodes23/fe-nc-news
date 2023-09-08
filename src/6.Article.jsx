@@ -44,14 +44,14 @@ const Article = () => {
   return (
     <div>
       <article className="Article" key={article.article_id}>
+      <h2>{article.title}</h2>
         <img
           className="ArticleImage"
           src={article.article_img_url}
           alt={`Picture related to ${article.title}`}
         />
-        <h2>{article.title}</h2>
         <p>by {article.author} </p>
-        <p>{new Date(article.created_at).toUTCString()}</p>
+        <p>{new Date(article.created_at).toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
         <p>topic: {article.topic}</p>
         <p>{article.body}</p>
         {err ? <p>{err}</p> : null}

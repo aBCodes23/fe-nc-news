@@ -6,8 +6,8 @@ import { Link, useSearchParams } from "react-router-dom";
 const Articles = () => {
   const [articles, setArticles] = useState([]);
   let [searchParams] = useSearchParams();
-  const sortBy = searchParams.get('sort_by')
-  const orderBy = searchParams.get('order')
+  const sortBy = searchParams.get("sort_by");
+  const orderBy = searchParams.get("order");
 
   useEffect(() => {
     getArticles(sortBy, orderBy).then((articles) => {
@@ -18,7 +18,7 @@ const Articles = () => {
   return (
     <div>
       <li className="dropdown">
-        <button className="dropbtn">Sort By</button>
+        <button className="dropbtnSort">Sort By</button>
         <div className="dropdown-content">
           <Link key="datesort" to="/articles?order=DESC&sort_by=created_at">
             date
@@ -26,7 +26,10 @@ const Articles = () => {
           <Link key="votesort" to="/articles?order=DESC&sort_by=votes">
             votes
           </Link>
-          <Link key="commentsort" to="/articles?order=DESC&sort_by=comment_count">
+          <Link
+            key="commentsort"
+            to="/articles?order=DESC&sort_by=comment_count"
+          >
             comments
           </Link>
         </div>
@@ -34,10 +37,24 @@ const Articles = () => {
       <li className="dropdown">
         <button className="dropbtn">Order</button>
         <div className="dropdown-content">
-          <Link key="desc" to={sortBy ? `/articles?order=DESC&sort_by=${sortBy}`: '/articles?order=DESC'}>
+          <Link
+            key="desc"
+            to={
+              sortBy
+                ? `/articles?order=DESC&sort_by=${sortBy}`
+                : "/articles?order=DESC"
+            }
+          >
             Descending
           </Link>
-          <Link key="asc" to={sortBy ? `/articles?order=ASC&sort_by=${sortBy}`: '/articles?order=ASC'}>
+          <Link
+            key="asc"
+            to={
+              sortBy
+                ? `/articles?order=ASC&sort_by=${sortBy}`
+                : "/articles?order=ASC"
+            }
+          >
             Ascending
           </Link>
         </div>
