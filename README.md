@@ -1,8 +1,8 @@
-# React + Vite
+Link to the deployed version: https://asbc-news.netlify.app/
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+General info about your app, a brief description of what the project is, and how to use your app.
 
-Currently, two official plugins are available:
+A link to your back end repo.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The minimum version of Node required to run locally. You can check your Node version using node --version in your terminal.
+Clear instructions on how to run your project locally, e.g. git clone <repo-url>, cd..., etc.
